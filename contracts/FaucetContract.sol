@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract FaucetContract {
+import "./IFaucet.sol";
+
+contract FaucetContract is IFacuet {
     
     uint public numOfFAunders;
     mapping (address => bool) private funders;
@@ -17,7 +19,7 @@ contract FaucetContract {
     }
 
     //Ready for mr.Tambussi
-    function transferThePower(address newOwner) OnlyOwner {
+    function transferThePower(address newOwner) public OnlyOwner {
         owner = newOwner;
     }
 
@@ -29,7 +31,7 @@ contract FaucetContract {
     }
 
     //DEPOSIT
-    function addFunds() public payable {
+    function addFunds() override  public payable {
         address funder = msg.sender;
 
         if(!funders[funder]){
@@ -40,7 +42,7 @@ contract FaucetContract {
     }
 
     //WITHDRAW
-    function withdraw(uint withdrawAmount) external LimitWithdraw(withdrawAmount) {
+    function withdraw(uint withdrawAmount) override  external LimitWithdraw(withdrawAmount) {
          payable(msg.sender).transfer(withdrawAmount);
     }
 
