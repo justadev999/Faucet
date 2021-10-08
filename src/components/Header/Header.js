@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react'
 import {
     Nav,
     ImageWrapper,
-    ConnectButton
 } from "./HeaderElements"
-import { FaWallet } from "react-icons/fa"
 import Web3 from 'web3'
 
 const Header = () => {
@@ -13,6 +11,8 @@ const Header = () => {
         provider: null,
         web3: null
     })
+
+    console.log(web3API);
 
     useEffect(() => {
         const loadProvider = async () => {
