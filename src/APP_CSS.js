@@ -4,7 +4,7 @@ export const FaucetWrapper = styled.div`
 width: 50rem;
 max-width: 80%;
 padding: 1rem;
-margin: 10rem auto;
+margin: 3rem auto;
 `
 
 export const Faucet = styled.div`

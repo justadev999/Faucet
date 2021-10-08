@@ -13,11 +13,23 @@ import {
 } from "./APP_CSS"
 import "./GeneralCss.css"
 import { FaEthereum } from "react-icons/fa"
+import Footer from "./components/Footer/Footer"
+import Web3 from "web3"
+
+console.log(Web3);
 
 function App() {
+
+  // useEffect(() => {
+  //   const loadProvider = async () => {
+  //     console.log(window.web3);
+  //     console.log(window.ethereum);
+  //   }
+  //   loadProvider()
+  // })
+
   let currency = "ETH"
   let balance = 10
-
   return <>
     <Header />
     <FaucetWrapper>
@@ -36,8 +48,7 @@ function App() {
         </ButtonWrapper>
       </Faucet>
     </FaucetWrapper>
+    <Footer />
   </>
 }
-
 export default App;
-{/* <h1>Developed with 🥵 ###!!🤬OMFKNG##🥲 by <a onClick={() => window.open("https://github.com/RainbowWZRD")}>RNBWZRD</a>  </h1> */ }
