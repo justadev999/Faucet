@@ -11,7 +11,7 @@ export const Faucet = styled.div`
 width: 100%;
 max-width: 95%;
 padding: 1rem;
-margin: 1rem auto;
+margin: 0.8rem auto;
 background: #343536;
 
 border-radius: 12px;
@@ -76,4 +76,10 @@ cursor: pointer;
     opacity: 0.9;
     box-shadow: 0px 3px 6px rgba(0, 0, 0 , 0.2);
 }
+`
+
+export const CurrentAddress = styled.p`
+font-family: Poppins;
+font-size: 1rem;
+color: #505152;
 `

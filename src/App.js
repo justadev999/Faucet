@@ -9,7 +9,8 @@ import {
   BalanceLabel,
   ButtonWrapper,
   DepositButton,
-  WithdrawButton
+  WithdrawButton,
+  CurrentAddress
 } from "./APP_CSS"
 import "./GeneralCss.css"
 import { FaEthereum } from "react-icons/fa"
@@ -30,16 +31,18 @@ function App() {
 
   let currency = "ETH"
   let balance = 10
+  let currentAddress = 0xe4C1ECe539aFd62d60050D392A957204d2F69f36
   return <>
     <Header />
     <FaucetWrapper>
-      <IntroLabel>Ciao 👋 Benvenuto nel faucet di Turin ETH.</IntroLabel>
+      <IntroLabel>Ciao 👋 Benvenuto nel faucet di ETH Turin.</IntroLabel>
       <CaptionLabel>Potrai compiere due azioni: RITIRARE e DEPOSITARE
         <span> <FaEthereum className="eth__logo" /></span>
         (Finti, quindi, non ti eccitare troppo)
       </CaptionLabel>
       <Faucet>
         <BalanceView>
+          <CurrentAddress>Address:{currentAddress}</CurrentAddress>
           <BalanceLabel>Current Balance <strong>{balance}</strong> {currency}</BalanceLabel>
         </BalanceView>
         <ButtonWrapper>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-// import Logo from "../../Images/ethtutin_logo.png"
+import Logo from "../../Images/ETH_TURIN__logo.png"
 import {
     Nav,
-    ImageWrapper,
+    NavWrapper,
+    LogoImg,
+    ConnectButton
 } from "./HeaderElements"
 import Web3 from 'web3'
 
@@ -42,8 +44,23 @@ const Header = () => {
     }, [])
 
     return <Nav>
-        <ImageWrapper>
-            {/* <ConnectButton
+        <NavWrapper>
+            <LogoImg src={Logo} />
+            <ConnectButton onClick={async () => {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    console.log(accounts)
+            }}> Connect Wallet
+            </ConnectButton>
+        </NavWrapper>
+    </Nav>
+}
+
+export default Header
+
+
+
+{/* CONNECT DIRECLY TO METAMASK
+    <ConnectButton
                 onClick={async () => {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     console.log(accounts)
@@ -52,8 +69,3 @@ const Header = () => {
             >Connect Wallet
                 <span><FaWallet style={{ marginLeft: "0.2rem" }} /></span>
             </ConnectButton> */}
-        </ImageWrapper>
-    </Nav>
-}
-
-export default Header
