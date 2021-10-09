@@ -8,7 +8,7 @@ import {
 const Footer = () => {
     return (
         <FooterWrapper>
-            <FooterLabel>Developed with 🥵 ###!!🤬OMFKNG##🥲 by
+            <FooterLabel>Developed with 🥵 by
                 <OnAaaaaaaa onClick={() => window.open("https://github.com/RainbowWZRD")}>
                     RNBWZRD</OnAaaaaaaa>  </FooterLabel>
         </FooterWrapper>
