@@ -21,4 +21,8 @@ text-align: center;
 `
 export const OnAaaaaaaa = styled.a`
 cursor: pointer;
+
+&:hover{
+    color: #00d1b2;
+}
 `

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import Header from "./components/Header/Header"
 import {
   FaucetWrapper,
@@ -20,9 +20,58 @@ import Web3 from "web3"
 console.log(Web3);
 
 function App() {
+  const [web3API, setWeb3API] = useState({
+    provider: null,
+    web3: null
+})
+const [account, setAccount] = useState(null)
+// const [balance, setBalance] = useState(null)
+console.log(account, setAccount, web3API)
+
+useEffect(() => {
+    const loadProvider = async () => {
+        let provider = null
+        if (window.ethereum) {
+            provider = window.ethereum
+            try {
+                await provider.enable()
+            } catch (err) {
+                console.log('Non ti logghiamo pezzo di fango');
+            }
+            console.log(provider);
+        } else if (window.web3) {
+            provider = window.web3.currentProvider
+            console.log(provider);
+        } else if (!process.env.production) {
+            provider = new Web3.providers.HttpProvider("http.//localhost:7545")
+            console.log(provider);
+        }
+        setWeb3API({
+            web3: new Web3(provider),
+            provider
+        })
+    }
+    loadProvider()
+}, [])
+
+useEffect(() => {
+    const getAccount = async () => {
+        const accounts = await web3API.web3.eth.getAccounts()
+        setAccount(accounts[0])
+    }
+    web3API.web3 && getAccount()
+}, [web3API.web3])
+
+// useEffect(() => {
+//   const getBalance = async() => {
+//     const balance = await web3API.web3.eth.getBalance()
+//     setBalance(balance.account)
+//   }
+//   web3API.web3 && getBalance()
+// }, web3API.web3)
+
 let currency = "ETH"
   let balance = 10
-  let currentAddress = "0xe4C1ECe539aFd62d60050D392A957204d2F69f36"
   return <>
     <Header  />
     <FaucetWrapper>
@@ -33,7 +82,7 @@ let currency = "ETH"
       </CaptionLabel>
       <Faucet>
         <BalanceView>
-          <CurrentAddress> <strong>Address: </ strong> {currentAddress}</CurrentAddress>
+          <CurrentAddress> <strong>Address: </ strong> {account ? account : "Not Logged"}</CurrentAddress>
           <BalanceLabel>Current Balance <strong>{balance}</strong> {currency}</BalanceLabel>
         </BalanceView>
         <ButtonWrapper>

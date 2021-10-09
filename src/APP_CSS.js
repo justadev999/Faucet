@@ -13,6 +13,7 @@ max-width: 95%;
 padding: 1rem;
 margin: 0.8rem auto;
 background: #343536;
+margin-top: 1em;
 
 border-radius: 12px;
 box-shadow: 0px 3px 6px rgba(0, 0, 0 , 0.4);
@@ -26,6 +27,7 @@ font-family: Poppins;
 font-size: 2.5em;
 font-weight: 700;
 color: #f2f2f2;
+margin-bottom: 0.3em;
 `
 
 export const CaptionLabel = styled.p`

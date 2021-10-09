@@ -8,9 +8,9 @@ import {
 const Footer = () => {
     return (
         <FooterWrapper>
-            <FooterLabel>Developed with 🥵 by
-                <OnAaaaaaaa onClick={() => window.open("https://github.com/RainbowWZRD")}>
-                    RNBWZRD</OnAaaaaaaa>  </FooterLabel>
+            <FooterLabel>Developed with 🥵 by 
+                 <OnAaaaaaaa onClick={() => window.open("https://github.com/RainbowWZRD")}>
+                     RNBWZRD</OnAaaaaaaa>  </FooterLabel>
         </FooterWrapper>
     )
 }
