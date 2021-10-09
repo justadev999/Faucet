@@ -20,20 +20,11 @@ import Web3 from "web3"
 console.log(Web3);
 
 function App() {
-
-  // useEffect(() => {
-  //   const loadProvider = async () => {
-  //     console.log(window.web3);
-  //     console.log(window.ethereum);
-  //   }
-  //   loadProvider()
-  // })
-
-  let currency = "ETH"
+let currency = "ETH"
   let balance = 10
   let currentAddress = "0xe4C1ECe539aFd62d60050D392A957204d2F69f36"
   return <>
-    <Header />
+    <Header  />
     <FaucetWrapper>
       <IntroLabel>Ciao 👋 Benvenuto nel faucet di ETH Turin.</IntroLabel>
       <CaptionLabel>Potrai compiere due azioni: RITIRARE e DEPOSITARE

@@ -8,18 +8,24 @@ padding: 2rem;
 
 display: flex;
 align-items: center;
-justify-content: center;
  `
  
 export const NavWrapper = styled.div`
 display: flex;
 justify-content: space-between;
+align-items: center;
 height: 100%;
 min-height: 90px;
 width: 90%;
 `
 
 export const LogoImg = styled.img`
+max-height: 100%;
+margin-left: 3em;
+
+@media screen and (max-width : 600px){
+    margin-left: 0.5rem;
+}
 `
 
 // export const LogoImg = styled.img`

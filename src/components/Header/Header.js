@@ -22,7 +22,6 @@ const Header = () => {
             let provider = null
             if (window.ethereum) {
                 provider = window.ethereum
-
                 try {
                     await provider.enable()
                 } catch (err) {
@@ -44,17 +43,18 @@ const Header = () => {
         loadProvider()
     }, [])
 
-    // useEffect(() => {
-    //     const getAccounts = async () => {
-    //         const accounts = await web3API.web3.ethereum.getAccounts()
-    //         setAccount(accounts[0])
-    //     }
-    //     getAccounts()
-    // }, [web3API.web3])
+    useEffect(() => {
+        const getAccount = async () => {
+            const accounts = await web3API.web3.eth.getAccounts()
+            setAccount(accounts[0])
+        }
+        web3API.web3 && getAccount()
+    }, [web3API.web3])
 
     return <Nav>
         <NavWrapper>
             <LogoImg src={Logo} />
+
             <ConnectButton onClick={async () => {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     console.log(accounts)

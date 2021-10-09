@@ -4,7 +4,7 @@ export const FaucetWrapper = styled.div`
 width: 50rem;
 max-width: 80%;
 padding: 1rem;
-margin: 3rem auto;
+margin: 1rem auto;
 `
 
 export const Faucet = styled.div`
@@ -38,13 +38,14 @@ color: #f2f2f2;
 export const BalanceLabel = styled.p`
 font-family: Poppins;
 font-size: 3rem;
+line-height: 1.2;
 color: #505152;
+margin-top: 0.5rem;
 `
 
 export const ButtonWrapper = styled.div`
 width: 100%;
 margin-top: 2em;
-
 display: flex;
 `
 
