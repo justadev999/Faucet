@@ -31,7 +31,7 @@ function App() {
 
   let currency = "ETH"
   let balance = 10
-  let currentAddress = 0xe4C1ECe539aFd62d60050D392A957204d2F69f36
+  let currentAddress = "0xe4C1ECe539aFd62d60050D392A957204d2F69f36"
   return <>
     <Header />
     <FaucetWrapper>
@@ -42,7 +42,7 @@ function App() {
       </CaptionLabel>
       <Faucet>
         <BalanceView>
-          <CurrentAddress>Address:{currentAddress}</CurrentAddress>
+          <CurrentAddress> <strong>Address: </ strong> {currentAddress}</CurrentAddress>
           <BalanceLabel>Current Balance <strong>{balance}</strong> {currency}</BalanceLabel>
         </BalanceView>
         <ButtonWrapper>

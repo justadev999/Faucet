@@ -14,7 +14,8 @@ const Header = () => {
         web3: null
     })
 
-    console.log(web3API);
+    const [account, setAccount] = useState(null)
+    console.log(account, setAccount, web3API)
 
     useEffect(() => {
         const loadProvider = async () => {
@@ -43,6 +44,14 @@ const Header = () => {
         loadProvider()
     }, [])
 
+    // useEffect(() => {
+    //     const getAccounts = async () => {
+    //         const accounts = await web3API.web3.ethereum.getAccounts()
+    //         setAccount(accounts[0])
+    //     }
+    //     getAccounts()
+    // }, [web3API.web3])
+
     return <Nav>
         <NavWrapper>
             <LogoImg src={Logo} />
@@ -56,16 +65,3 @@ const Header = () => {
 }
 
 export default Header
-
-
-
-{/* CONNECT DIRECLY TO METAMASK
-    <ConnectButton
-                onClick={async () => {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    console.log(accounts)
-                }
-                }
-            >Connect Wallet
-                <span><FaWallet style={{ marginLeft: "0.2rem" }} /></span>
-            </ConnectButton> */}
