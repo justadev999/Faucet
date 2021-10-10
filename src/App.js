@@ -16,6 +16,7 @@ import "./GeneralCss.css"
 import { FaEthereum } from "react-icons/fa"
 import Footer from "./components/Footer/Footer"
 import Web3 from "web3"
+import detectEthereumProvider from '@metamask/detect-provider'
 
 console.log(Web3);
 
@@ -30,26 +31,17 @@ console.log(account, setAccount, web3API)
 
 useEffect(() => {
     const loadProvider = async () => {
-        let provider = null
-        if (window.ethereum) {
-            provider = window.ethereum
-            try {
-                await provider.enable()
-            } catch (err) {
-                console.log('Non ti logghiamo pezzo di fango');
-            }
-            console.log(provider);
-        } else if (window.web3) {
-            provider = window.web3.currentProvider
-            console.log(provider);
-        } else if (!process.env.production) {
-            provider = new Web3.providers.HttpProvider("http.//localhost:7545")
-            console.log(provider);
-        }
-        setWeb3API({
+        const  provider = await detectEthereumProvider()
+
+        if (provider) {
+          provider.request({method : "eth_requestAccounts"})
+          setWeb3API({
             web3: new Web3(provider),
             provider
         })
+        } else {
+          console.log('Please,install Metamask 🦊');
+        }
     }
     loadProvider()
 }, [])

@@ -40,7 +40,8 @@ margin-right: 2rem;
     border-radius: 12px;
     align-self: center;
     border: none;
-    background: #00d1b2;
+    background: #1ceeea;
+    font-weight: 700;
     box-shadow: 0px 3px 6px rgb(0 0 0 / 40%);
     cursor: pointer;
 

@@ -56,7 +56,9 @@ padding: 1rem 2rem;
 border-radius: 12px;
 border: none;
 margin-right: 1em;
-background: #b86bff;
+background: #ff00e0;
+color: #700A64;
+font-size: 1em;
 box-shadow: 0px 3px 6px rgba(0, 0, 0 , 0.4);
 cursor: pointer;
 
@@ -71,9 +73,11 @@ padding: 1rem 2rem;
 border-radius: 12px;
 border: none;
 margin-right: 2em;
-background: #00d1b2;
+background: #1ceeea;
+color: #227070;
 box-shadow: 0px 3px 6px rgba(0, 0, 0 , 0.4);
 cursor: pointer;
+font-size: 1em;
 
 &:hover{
     opacity: 0.9;
