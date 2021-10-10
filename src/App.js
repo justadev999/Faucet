@@ -17,27 +17,32 @@ import { FaEthereum } from "react-icons/fa"
 import Footer from "./components/Footer/Footer"
 import Web3 from "web3"
 import detectEthereumProvider from '@metamask/detect-provider'
+import {loadContract} from "./utils/load-contract"
 
 console.log(Web3);
 
 function App() {
   const [web3API, setWeb3API] = useState({
     provider: null,
-    web3: null
+    web3: null,
+    contract : null
 })
 const [account, setAccount] = useState(null)
+const [balance , setBalance] = useState(null)
 // const [balance, setBalance] = useState(null)
 console.log(account, setAccount, web3API)
 
-useEffect(() => {
+  useEffect(() => {
     const loadProvider = async () => {
         const  provider = await detectEthereumProvider()
+        const contract = await loadContract("FaucetContract", provider)
 
         if (provider) {
           provider.request({method : "eth_requestAccounts"})
           setWeb3API({
             web3: new Web3(provider),
-            provider
+            provider,
+            contract
         })
         } else {
           console.log('Please,install Metamask 🦊');
@@ -47,6 +52,17 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
+  const loadBalance = async () => {
+    const {contract, web3} = web3API
+    const balance = await web3.eth.getBalance(contract.address)
+    setBalance(web3.utils.fromWei(balance, "ether"))
+  }
+    console.log(balance, "BALANCE")
+    web3API.contract && loadBalance()
+
+}, [web3API, balance])
+
+useEffect(() => {
     const getAccount = async () => {
         const accounts = await web3API.web3.eth.getAccounts()
         setAccount(accounts[0])
@@ -54,16 +70,17 @@ useEffect(() => {
     web3API.web3 && getAccount()
 }, [web3API.web3])
 
-// useEffect(() => {
-//   const getBalance = async() => {
-//     const balance = await web3API.web3.eth.getBalance()
-//     setBalance(balance.account)
-//   }
-//   web3API.web3 && getBalance()
-// }, web3API.web3)
+const addFunds =  async () => {
+  const {contract, web3} = web3API
+  await contract.addFunds({
+    from : account,
+    value : web3.utils.toWei("1", "ether")
+  })
+  window.location.reload()
+}
 
 let currency = "ETH"
-  let balance = 10
+
   return <>
     <Header  />
     <FaucetWrapper>
@@ -78,7 +95,7 @@ let currency = "ETH"
           <BalanceLabel>Current Balance <strong>{balance}</strong> {currency}</BalanceLabel>
         </BalanceView>
         <ButtonWrapper>
-          <DepositButton>Deposit</DepositButton>
+          <DepositButton onClick={addFunds}>Deposit 1 <span> <FaEthereum className="eth__logo" /></span> </DepositButton>
           <WithdrawButton>Withdraw</WithdrawButton>
         </ButtonWrapper>
       </Faucet>
