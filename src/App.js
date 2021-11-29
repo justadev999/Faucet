@@ -14,7 +14,6 @@ import {
 } from './APP_CSS';
 import './GeneralCss.css';
 import { FaEthereum } from 'react-icons/fa';
-import Footer from './components/Footer/Footer';
 import Web3 from 'web3';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { loadContract } from './utils/load-contract';
@@ -77,9 +76,9 @@ function App() {
 
   const withdraw = async () => {
     const { contract, web3 } = web3API;
-    await contract.withdraw({
-      from: contract,
-      value: '1',
+    const withdrawAmount = web3.utils.toWei('0.5', 'ether');
+    await contract.withdraw(withdrawAmount, {
+      from: account,
     });
     window.location.reload();
   };
@@ -118,7 +117,6 @@ function App() {
           </ButtonWrapper>
         </Faucet>
       </FaucetWrapper>
-      <Footer />
     </>
   );
 }
