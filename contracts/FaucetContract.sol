@@ -20,7 +20,6 @@ contract FaucetContract is IFacuet {
         _;
     }
 
-    //Ready for mr.Tambussi
     function transferThePower(address newOwner) public OnlyOwner {
         owner = newOwner;
     }
