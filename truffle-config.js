@@ -1,5 +1,5 @@
 var HDWalletProvider = require('truffle-hdwallet-provider');
-const mnemonic = 'test test test test test test test test test test test junk';
+const mnemonic = process.env.METAMASK_MNEMONIC;
 
 module.exports = {
   contracts_build_directory: './public/contracts',
@@ -11,10 +11,7 @@ module.exports = {
     },
     ropsten: {
       provider: function () {
-        return new HDWalletProvider(
-          mnemonic,
-          'https://ropsten.infura.io/v3/5432059639464b2e9387e0c72857cfa3'
-        );
+        return new HDWalletProvider(mnemonic, process.env.INFURA_API_KEY);
       },
       network_id: 3,
       gas: 4000000, //make sure this gas allocation isn't over 4M, which is the max
